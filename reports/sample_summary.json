@@ -1,0 +1,639 @@
+{
+  "generated_at": "2026-09-23T07:45:46+00:00",
+  "sources": [
+    "loba",
+    "carlroth",
+    "chemimpex"
+  ],
+  "counts": {
+    "supplier_skus": 180,
+    "by_source": {
+      "loba": 60,
+      "carlroth": 60,
+      "chemimpex": 60
+    },
+    "reference_substances": 74,
+    "sds_parsed": 40,
+    "substance_clusters": 51,
+    "multi_supplier_clusters": 7
+  },
+  "match_decisions": {
+    "accept": 164,
+    "review": 15,
+    "reject": 1,
+    "unresolved": 0
+  },
+  "quality_findings": {
+    "cas_missing": {
+      "warning": 19,
+      "total": 19
+    },
+    "molar_mass_vs_reference": {
+      "warning": 2,
+      "total": 2
+    },
+    "sds_no_cas": {
+      "info": 1,
+      "total": 1
+    },
+    "sds_primary_cas_is_another_component": {
+      "info": 5,
+      "total": 5
+    }
+  },
+  "evaluation": {
+    "thresholds": {
+      "accept": 0.92,
+      "review": 0.78,
+      "mass_tolerance": 0.02
+    },
+    "name_only": {
+      "supplier_published_cid": {
+        "label_source": "chemimpex pubchem_cid",
+        "labelled": 41,
+        "answered": 34,
+        "correct": 29,
+        "correct_exact_record": 27,
+        "correct_equivalent_record": 2,
+        "label_less_specific": 4,
+        "wrong": 1,
+        "abstained": 7,
+        "precision": 0.9667,
+        "recall": 0.7838,
+        "f1": 0.8657,
+        "sample_errors": [
+          {
+            "product": "Copper(II) sulfate pentahydrate",
+            "sku": "chemimpex:01443",
+            "predicted": "Copper sulfate pentahydrate",
+            "predicted_id": "24463",
+            "predicted_cas": [
+              "7758-99-8"
+            ],
+            "expected_id": "43834999",
+            "expected_name": "Sulfuric acid copper(2+) salt (1:1), hydrate (8CI,9CI)",
+            "expected_cas": [],
+            "expected_resolved": true,
+            "score": 1.0,
+            "reasons": [
+              "name_similarity=1.000",
+              "formula_match",
+              "molar_mass_agrees",
+              "hydration_gate_excluded=1",
+              "cas_withheld_for_evaluation"
+            ]
+          }
+        ],
+        "label_less_specific_examples": [
+          {
+            "product": "Calcium chloride dihydrate",
+            "predicted": "Calcium chloride, dihydrate",
+            "predicted_cas": [
+              "10035-04-8"
+            ],
+            "label": "Calcium chloride xhydrate",
+            "label_cas": [
+              "22691-02-7"
+            ]
+          },
+          {
+            "product": "Calcium chloride hexahydrate",
+            "predicted": "Calcium Chloride Hexahydrate",
+            "predicted_cas": [
+              "7774-34-7"
+            ],
+            "label": "Calcium chloride xhydrate",
+            "label_cas": [
+              "22691-02-7"
+            ]
+          },
+          {
+            "product": "Calcium chloride dihydrate",
+            "predicted": "Calcium chloride, dihydrate",
+            "predicted_cas": [
+              "10035-04-8"
+            ],
+            "label": "Calcium chloride xhydrate",
+            "label_cas": [
+              "22691-02-7"
+            ]
+          },
+          {
+            "product": "Calcium chloride dihydrate",
+            "predicted": "Calcium chloride, dihydrate",
+            "predicted_cas": [
+              "10035-04-8"
+            ],
+            "label": "Calcium chloride xhydrate",
+            "label_cas": [
+              "22691-02-7"
+            ]
+          }
+        ],
+        "labels_unresolvable_in_spine": 0
+      },
+      "cas_resolved": {
+        "label_source": "CAS resolved via PubChem (withheld)",
+        "labelled": 161,
+        "answered": 136,
+        "correct": 135,
+        "correct_exact_record": 135,
+        "correct_equivalent_record": 0,
+        "label_less_specific": 0,
+        "wrong": 1,
+        "abstained": 25,
+        "precision": 0.9926,
+        "recall": 0.8385,
+        "f1": 0.9091,
+        "sample_errors": [
+          {
+            "product": "Copper(II) trifluoromethanesulfonate",
+            "sku": "chemimpex:36889",
+            "predicted": "copper(II) trifluoromethanesulfonate",
+            "predicted_id": "2734996",
+            "predicted_cas": [],
+            "expected_id": "3260416",
+            "expected_name": "Copper(II) triflate",
+            "expected_cas": [
+              "34946-82-2"
+            ],
+            "expected_resolved": true,
+            "score": 1.0,
+            "reasons": [
+              "name_similarity=1.000",
+              "formula_match",
+              "molar_mass_agrees",
+              "hydration_unspecified_on_one_side",
+              "cas_withheld_for_evaluation"
+            ]
+          }
+        ]
+      }
+    },
+    "hydration_gate_ablation": {
+      "with_full_evidence": {
+        "with_gate": {
+          "label_source": "gated",
+          "labelled": 161,
+          "answered": 136,
+          "correct": 135,
+          "correct_exact_record": 135,
+          "correct_equivalent_record": 0,
+          "label_less_specific": 0,
+          "wrong": 1,
+          "abstained": 25,
+          "precision": 0.9926,
+          "recall": 0.8385,
+          "f1": 0.9091,
+          "sample_errors": [
+            {
+              "product": "Copper(II) trifluoromethanesulfonate",
+              "sku": "chemimpex:36889",
+              "predicted": "copper(II) trifluoromethanesulfonate",
+              "predicted_id": "2734996",
+              "predicted_cas": [],
+              "expected_id": "3260416",
+              "expected_name": "Copper(II) triflate",
+              "expected_cas": [
+                "34946-82-2"
+              ],
+              "expected_resolved": true,
+              "score": 1.0,
+              "reasons": [
+                "name_similarity=1.000",
+                "formula_match",
+                "molar_mass_agrees",
+                "hydration_unspecified_on_one_side",
+                "cas_withheld_for_evaluation"
+              ]
+            }
+          ]
+        },
+        "without_gate": {
+          "label_source": "ungated",
+          "labelled": 161,
+          "answered": 132,
+          "correct": 131,
+          "correct_exact_record": 131,
+          "correct_equivalent_record": 0,
+          "label_less_specific": 0,
+          "wrong": 1,
+          "abstained": 29,
+          "precision": 0.9924,
+          "recall": 0.8137,
+          "f1": 0.8942,
+          "sample_errors": [
+            {
+              "product": "Copper(II) trifluoromethanesulfonate",
+              "sku": "chemimpex:36889",
+              "predicted": "copper(II) trifluoromethanesulfonate",
+              "predicted_id": "2734996",
+              "predicted_cas": [],
+              "expected_id": "3260416",
+              "expected_name": "Copper(II) triflate",
+              "expected_cas": [
+                "34946-82-2"
+              ],
+              "expected_resolved": true,
+              "score": 1.0,
+              "reasons": [
+                "name_similarity=1.000",
+                "formula_match",
+                "molar_mass_agrees",
+                "cas_withheld_for_evaluation"
+              ]
+            }
+          ]
+        },
+        "wrong_merges_prevented_by_gate": 0,
+        "answers_enabled_by_gate": 4,
+        "correct_answers_enabled_by_gate": 4,
+        "extra_errors_from_gate": 0,
+        "examples": []
+      },
+      "name_evidence_only": {
+        "with_gate": {
+          "label_source": "gated",
+          "labelled": 161,
+          "answered": 135,
+          "correct": 123,
+          "correct_exact_record": 123,
+          "correct_equivalent_record": 0,
+          "label_less_specific": 1,
+          "wrong": 11,
+          "abstained": 26,
+          "precision": 0.9179,
+          "recall": 0.7688,
+          "f1": 0.8367,
+          "sample_errors": [
+            {
+              "product": "L-Cysteine S-sulfate sodium sesquihydrate, 5 g",
+              "sku": "carlroth:2H77.3",
+              "predicted": "Sodium Hydroxide",
+              "predicted_id": "14798",
+              "predicted_cas": [
+                "1310-73-2",
+                "81133-20-2"
+              ],
+              "expected_id": "165415592",
+              "expected_name": "L-Cysteine S-sulfate sodium salt sesquihydrate",
+              "expected_cas": [
+                "150465-29-5"
+              ],
+              "expected_resolved": true,
+              "score": 0.95,
+              "reasons": [
+                "name_similarity=1.000",
+                "hydration_unspecified_on_one_side",
+                "hydration_gate_excluded=2",
+                "cas_withheld_for_evaluation"
+              ]
+            },
+            {
+              "product": "L-Cysteine S-sulfate sodium sesquihydrate, 10 g",
+              "sku": "carlroth:2H77.4",
+              "predicted": "Sodium Hydroxide",
+              "predicted_id": "14798",
+              "predicted_cas": [
+                "1310-73-2",
+                "81133-20-2"
+              ],
+              "expected_id": "165415592",
+              "expected_name": "L-Cysteine S-sulfate sodium salt sesquihydrate",
+              "expected_cas": [
+                "150465-29-5"
+              ],
+              "expected_resolved": true,
+              "score": 0.95,
+              "reasons": [
+                "name_similarity=1.000",
+                "hydration_unspecified_on_one_side",
+                "hydration_gate_excluded=2",
+                "cas_withheld_for_evaluation"
+              ]
+            },
+            {
+              "product": "L-Cysteine S-sulfate sodium sesquihydrate, 25 g",
+              "sku": "carlroth:2H77.5",
+              "predicted": "Sodium Hydroxide",
+              "predicted_id": "14798",
+              "predicted_cas": [
+                "1310-73-2",
+                "81133-20-2"
+              ],
+              "expected_id": "165415592",
+              "expected_name": "L-Cysteine S-sulfate sodium salt sesquihydrate",
+              "expected_cas": [
+                "150465-29-5"
+              ],
+              "expected_resolved": true,
+              "score": 0.95,
+              "reasons": [
+                "name_similarity=1.000",
+                "hydration_unspecified_on_one_side",
+                "hydration_gate_excluded=2",
+                "cas_withheld_for_evaluation"
+              ]
+            },
+            {
+              "product": "Sodium carbonate, 10 kg",
+              "sku": "carlroth:8563.2",
+              "predicted": "Sodium Bicarbonate",
+              "predicted_id": "516892",
+              "predicted_cas": [
+                "144-55-8"
+              ],
+              "expected_id": "10340",
+              "expected_name": "Sodium Carbonate",
+              "expected_cas": [
+                "497-19-8",
+                "7542-12-3",
+                "1332-57-6"
+              ],
+              "expected_resolved": true,
+              "score": 1.0,
+              "reasons": [
+                "name_similarity=1.000",
+                "cas_withheld_for_evaluation"
+              ]
+            },
+            {
+              "product": "Sodium carbonate, 1 kg",
+              "sku": "carlroth:A135.2",
+              "predicted": "Sodium Bicarbonate",
+              "predicted_id": "516892",
+              "predicted_cas": [
+                "144-55-8"
+              ],
+              "expected_id": "10340",
+              "expected_name": "Sodium Carbonate",
+              "expected_cas": [
+                "497-19-8",
+                "7542-12-3",
+                "1332-57-6"
+              ],
+              "expected_resolved": true,
+              "score": 1.0,
+              "reasons": [
+                "name_similarity=1.000",
+                "cas_withheld_for_evaluation"
+              ]
+            },
+            {
+              "product": "Sodium carbonate, 25 kg",
+              "sku": "carlroth:P028.5",
+              "predicted": "Sodium Bicarbonate",
+              "predicted_id": "516892",
+              "predicted_cas": [
+                "144-55-8"
+              ],
+              "expected_id": "10340",
+              "expected_name": "Sodium Carbonate",
+              "expected_cas": [
+                "497-19-8",
+                "7542-12-3",
+                "1332-57-6"
+              ],
+              "expected_resolved": true,
+              "score": 1.0,
+              "reasons": [
+                "name_similarity=1.000",
+                "cas_withheld_for_evaluation"
+              ]
+            },
+            {
+              "product": "Sodium carbonate, 25 g",
+              "sku": "carlroth:5740.2",
+              "predicted": "Sodium Bicarbonate",
+              "predicted_id": "516892",
+              "predicted_cas": [
+                "144-55-8"
+              ],
+              "expected_id": "10340",
+              "expected_name": "Sodium Carbonate",
+              "expected_cas": [
+                "497-19-8",
+                "7542-12-3",
+                "1332-57-6"
+              ],
+              "expected_resolved": true,
+              "score": 1.0,
+              "reasons": [
+                "name_similarity=1.000",
+                "cas_withheld_for_evaluation"
+              ]
+            },
+            {
+              "product": "Copper(II) trifluoromethanesulfonate",
+              "sku": "chemimpex:36889",
+              "predicted": "copper(II) trifluoromethanesulfonate",
+              "predicted_id": "2734996",
+              "predicted_cas": [],
+              "expected_id": "3260416",
+              "expected_name": "Copper(II) triflate",
+              "expected_cas": [
+                "34946-82-2"
+              ],
+              "expected_resolved": true,
+              "score": 0.95,
+              "reasons": [
+                "name_similarity=1.000",
+                "hydration_unspecified_on_one_side",
+                "cas_withheld_for_evaluation"
+              ]
+            },
+            {
+              "product": "Sodium carbonate",
+              "sku": "chemimpex:15134",
+              "predicted": "Sodium Bicarbonate",
+              "predicted_id": "516892",
+              "predicted_cas": [
+                "144-55-8"
+              ],
+              "expected_id": "10340",
+              "expected_name": "Sodium Carbonate",
+              "expected_cas": [
+                "497-19-8",
+                "7542-12-3",
+                "1332-57-6"
+              ],
+              "expected_resolved": true,
+              "score": 1.0,
+              "reasons": [
+                "name_similarity=1.000",
+                "cas_withheld_for_evaluation"
+              ]
+            },
+            {
+              "product": "Sodium carbonate",
+              "sku": "chemimpex:30109",
+              "predicted": "Sodium Bicarbonate",
+              "predicted_id": "516892",
+              "predicted_cas": [
+                "144-55-8"
+              ],
+              "expected_id": "10340",
+              "expected_name": "Sodium Carbonate",
+              "expected_cas": [
+                "497-19-8",
+                "7542-12-3",
+                "1332-57-6"
+              ],
+              "expected_resolved": true,
+              "score": 1.0,
+              "reasons": [
+                "name_similarity=1.000",
+                "cas_withheld_for_evaluation"
+              ]
+            }
+          ],
+          "label_less_specific_examples": [
+            {
+              "product": "Calcium chloride hydrate",
+              "predicted": "Calcium chloride hydrate",
+              "predicted_cas": [],
+              "label": "Calcium chloride xhydrate",
+              "label_cas": [
+                "22691-02-7"
+              ]
+            }
+          ]
+        },
+        "without_gate": {
+          "label_source": "ungated",
+          "labelled": 161,
+          "answered": 63,
+          "correct": 58,
+          "correct_exact_record": 58,
+          "correct_equivalent_record": 0,
+          "label_less_specific": 0,
+          "wrong": 5,
+          "abstained": 98,
+          "precision": 0.9206,
+          "recall": 0.3602,
+          "f1": 0.5179,
+          "sample_errors": [
+            {
+              "product": "L-Cysteine S-sulfate sodium sesquihydrate, 5 g",
+              "sku": "carlroth:2H77.3",
+              "predicted": "Sodium Hydroxide",
+              "predicted_id": "14798",
+              "predicted_cas": [
+                "1310-73-2",
+                "81133-20-2"
+              ],
+              "expected_id": "165415592",
+              "expected_name": "L-Cysteine S-sulfate sodium salt sesquihydrate",
+              "expected_cas": [
+                "150465-29-5"
+              ],
+              "expected_resolved": true,
+              "score": 1.0,
+              "reasons": [
+                "name_similarity=1.000",
+                "cas_withheld_for_evaluation"
+              ]
+            },
+            {
+              "product": "L-Cysteine S-sulfate sodium sesquihydrate, 10 g",
+              "sku": "carlroth:2H77.4",
+              "predicted": "Sodium Hydroxide",
+              "predicted_id": "14798",
+              "predicted_cas": [
+                "1310-73-2",
+                "81133-20-2"
+              ],
+              "expected_id": "165415592",
+              "expected_name": "L-Cysteine S-sulfate sodium salt sesquihydrate",
+              "expected_cas": [
+                "150465-29-5"
+              ],
+              "expected_resolved": true,
+              "score": 1.0,
+              "reasons": [
+                "name_similarity=1.000",
+                "cas_withheld_for_evaluation"
+              ]
+            },
+            {
+              "product": "L-Cysteine S-sulfate sodium sesquihydrate, 25 g",
+              "sku": "carlroth:2H77.5",
+              "predicted": "Sodium Hydroxide",
+              "predicted_id": "14798",
+              "predicted_cas": [
+                "1310-73-2",
+                "81133-20-2"
+              ],
+              "expected_id": "165415592",
+              "expected_name": "L-Cysteine S-sulfate sodium salt sesquihydrate",
+              "expected_cas": [
+                "150465-29-5"
+              ],
+              "expected_resolved": true,
+              "score": 1.0,
+              "reasons": [
+                "name_similarity=1.000",
+                "cas_withheld_for_evaluation"
+              ]
+            },
+            {
+              "product": "Copper(II) trifluoromethanesulfonate",
+              "sku": "chemimpex:36889",
+              "predicted": "copper(II) trifluoromethanesulfonate",
+              "predicted_id": "2734996",
+              "predicted_cas": [],
+              "expected_id": "3260416",
+              "expected_name": "Copper(II) triflate",
+              "expected_cas": [
+                "34946-82-2"
+              ],
+              "expected_resolved": true,
+              "score": 1.0,
+              "reasons": [
+                "name_similarity=1.000",
+                "cas_withheld_for_evaluation"
+              ]
+            },
+            {
+              "product": "Sodium tetraborate decahydrate",
+              "sku": "chemimpex:35969",
+              "predicted": "Sodium Hydroxide",
+              "predicted_id": "14798",
+              "predicted_cas": [
+                "1310-73-2",
+                "81133-20-2"
+              ],
+              "expected_id": "16211214",
+              "expected_name": "Borax (B4Na2O7.10H2O)",
+              "expected_cas": [
+                "1303-96-4",
+                "12447-40-4",
+                "1313726-63-4"
+              ],
+              "expected_resolved": true,
+              "score": 1.0,
+              "reasons": [
+                "name_similarity=1.000",
+                "cas_withheld_for_evaluation"
+              ]
+            }
+          ]
+        },
+        "wrong_merges_prevented_by_gate": 0,
+        "answers_enabled_by_gate": 72,
+        "correct_answers_enabled_by_gate": 65,
+        "extra_errors_from_gate": 6,
+        "examples": []
+      },
+      "note": "Two regimes. With formula and molar mass present, those carry most of the discrimination and the gate rarely changes an outcome. Stripping them isolates the case the gate exists for: a row where the name is the only evidence available."
+    }
+  },
+  "http": {
+    "requests": 1,
+    "cache_hits": 510,
+    "blocked": 0,
+    "errors": 1,
+    "robots_overrides_used": 1
+  },
+  "_note": "Aggregate output of one run (--limit 60), committed as an example. No supplier catalogue rows or safety data sheets are included here; see README section: What is not published here."
+}

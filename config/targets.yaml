@@ -1,0 +1,144 @@
+# Source allow-list.
+#
+# Nothing is fetched from a host that is not listed here, and every entry
+# records why it was judged fetchable. The `declined` block is deliberately
+# part of the config rather than a note in the README: the sites that refused
+# automated access are a finding about the chemical web, not an omission.
+#
+# Verified 2026-09-22. Re-check before any re-run; robots.txt changes.
+
+user_agent: >-
+  chem-catalog-resolver/0.1 (portfolio data-reconciliation project;
+  +https://github.com/Az-otrope/chem-catalog-resolver) python-requests
+
+# Floor applied to every host regardless of what robots.txt permits.
+default_delay_seconds: 2.0
+
+allowed:
+  - host: pubchem.ncbi.nlm.nih.gov
+    role: reference
+    module: chemspec.sources.pubchem
+    min_delay_seconds: 0.5    # NCBI documents a 5 req/s ceiling; this is 2 req/s
+    basis: >-
+      Documented public REST API (PUG-REST), used within NCBI's published
+      usage policy. Note that robots.txt DISALLOWS /rest/pug/ for the wildcard
+      group — see robots_overrides below, where that conflict is handled
+      explicitly rather than ignored.
+
+  - host: comptox.epa.gov
+    role: reference
+    module: null   # crosswalk not yet wired; see README "Extending"
+    basis: >-
+      robots.txt is entirely commented out — no restrictions asserted.
+      US federal public data.
+
+  - host: www.lobachemie.com
+    role: supplier
+    module: chemspec.sources.loba
+    format: server-rendered HTML (ASP.NET)
+    basis: >-
+      robots.txt is "Allow: /" with a single Disallow (/ecosafe/). It also
+      declares Crawl-delay: 5 in a group naming specific crawler user-agents
+      rather than in the wildcard group, so by the letter of the standard it
+      does not bind this client. It is honoured anyway — see
+      PoliteSession._max_declared_delay.
+
+  - host: api.carlroth.com
+    role: supplier
+    module: chemspec.sources.carlroth
+    format: JSON (SAP Commerce OCC API)
+    robots_authority: www.carlroth.com
+    basis: >-
+      The API host serves no robots.txt of its own (404), which by RFC 9309
+      asserts no restrictions. Rather than rely on that, the storefront's
+      robots.txt is applied on top: www.carlroth.com disallows only cart,
+      checkout, account and search paths, and permits product pages. The
+      storefront is an Angular SPA that declares this API in its
+      occ-backend-base-url meta tag; reading the API is materially lighter on
+      the origin than rendering the SPA.
+
+  - host: www.chemimpex.com
+    role: supplier
+    module: chemspec.sources.chemimpex
+    format: server-rendered HTML (Shopify)
+    basis: >-
+      robots.txt is "Allow: /" with no rule touching /products or /search.
+      The store additionally publishes sitemap_agentic_discovery.xml, an
+      explicit invitation to automated clients.
+
+# Declared exceptions to robots.txt.
+#
+# There is exactly one, and it is here rather than buried in code because it
+# is the only place this project does not simply do as it is told.
+#
+# PubChem's wildcard robots group disallows /rest/pug/. That rule sits in a
+# list next to /widget, /deposit/ and /upload/ — surfaces that are pointless
+# for a search engine to index — and the same file contains "Allow: /rest/"
+# in its named-crawler groups. Meanwhile PUG-REST is PubChem's documented
+# public programmatic interface, with its own published usage policy (no more
+# than 5 requests/second, bulk users directed to FTP). The robots rule is
+# plainly addressed to indexing crawlers, not to API clients.
+#
+# The exception is therefore taken deliberately and narrowly: one host, one
+# path prefix, no disguise, no evasion, requests at roughly 2/second against a
+# documented ceiling of 5/second, and every use counted in the run's http
+# stats so it can be audited. If PubChem's policy is read differently,
+# deleting these four lines makes the pipeline refuse the API — nothing else
+# changes.
+#
+# The alternative that needs no exception is PubChem's bulk FTP distribution;
+# see README "Extending".
+robots_overrides:
+  - host: pubchem.ncbi.nlm.nih.gov
+    path_prefix: /rest/pug/
+    justification: >-
+      PUG-REST is PubChem's documented public API with its own published rate
+      policy; the robots.txt rule targets indexing crawlers. Used at roughly
+      two fifths of the documented rate ceiling.
+
+# Sites checked and NOT used. Each was excluded on evidence, not on guesswork.
+declined:
+  - host: www.thermofisher.com
+    reason: robots_txt_unreachable
+    detail: >-
+      Akamai returns HTTP 403 for robots.txt itself to non-browser clients.
+      A site that will not serve its own robots file has not granted access,
+      and getting past the wall would mean building evasion.
+
+  - host: www.sigmaaldrich.com
+    reason: connection_refused
+    detail: No response at all to a plain HTTPS request.
+
+  - host: www.tcichemicals.com
+    reason: robots_txt_unreachable
+    detail: Akamai 403, same as ThermoFisher.
+
+  - host: www.spectrumchemical.com
+    reason: bot_challenge
+    detail: DataDome CAPTCHA interstitial served in place of content.
+
+  - host: www.oakwoodchemical.com
+    reason: bot_challenge
+    detail: Cloudflare "Sorry, you have been blocked" page.
+
+  - host: www.fishersci.com
+    reason: robots_disallows_needed_paths
+    detail: >-
+      robots.txt serves normally, but explicitly disallows /shop/msdssearch,
+      /shop/msdssearchhome, /shop/productsearch, /us/en/catalog/search and
+      itemdetail?catnum=* — precisely the SDS and product-detail paths this
+      project would need. Permitted to crawl, but not where the data is.
+
+  - host: www.basf.com
+    reason: no_suitable_catalogue
+    detail: >-
+      A producer rather than a distributor; publishes no per-product catalogue
+      carrying CAS plus SDS in the way the three selected distributors do.
+
+  - host: www.fluorochem.co.uk
+    reason: robots_disallows_needed_paths
+    detail: "Disallow: /Products/Product covers every product detail page."
+
+  - host: www.chemicalbook.com
+    reason: robots_disallows_needed_paths
+    detail: "Disallow: /Chemical/DetailForCas/ covers the CAS detail pages."

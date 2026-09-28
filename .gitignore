@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Harvested supplier data and cached responses are NOT redistributed.
+# See README, "What is not published here".
+data/
+reports/*.json
+!reports/sample_summary.json

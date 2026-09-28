@@ -1,0 +1,104 @@
+# Seed substances: inorganic salts and their hydrates.
+#
+# The family is chosen, not sampled. Hydrates are the case where naive name
+# matching fails hardest and most quietly: the anhydrous salt and its hydrate
+# share a name to within one token, but they are different substances with
+# different registry numbers, different molar masses and different assays.
+#
+# Every `pairs` entry below is a deliberate trap for the matcher — two CAS
+# numbers whose names differ only by a hydration word. If the matcher gets
+# these right it is doing something real; if it gets them wrong it is doing
+# string similarity and calling it entity resolution.
+
+search_terms:
+  - copper sulfate
+  - copper sulfate pentahydrate
+  - sodium carbonate
+  - sodium carbonate decahydrate
+  - magnesium sulfate
+  - magnesium sulfate heptahydrate
+  - calcium chloride
+  - calcium chloride dihydrate
+  - sodium acetate
+  - sodium acetate trihydrate
+  - iron(II) sulfate heptahydrate
+  - zinc sulfate heptahydrate
+  - nickel(II) chloride hexahydrate
+  - cobalt(II) chloride hexahydrate
+  - manganese(II) sulfate monohydrate
+  - sodium citrate dihydrate
+  - sodium thiosulfate pentahydrate
+  - barium hydroxide octahydrate
+  - aluminium potassium sulfate dodecahydrate
+  - sodium phosphate dibasic dodecahydrate
+  - potassium sodium tartrate tetrahydrate
+  - sodium tetraborate decahydrate
+  - citric acid monohydrate
+  - oxalic acid dihydrate
+  - lithium hydroxide monohydrate
+
+# Anhydrous / hydrate pairs with known-distinct registry numbers.
+# Used by tests and by the evaluation as the hard cases.
+pairs:
+  - name: copper(II) sulfate
+    anhydrous: 7758-98-7
+    hydrate: 7758-99-8
+    waters: 5
+
+  - name: sodium carbonate
+    anhydrous: 497-19-8
+    hydrate: 6132-02-1
+    waters: 10
+
+  - name: magnesium sulfate
+    anhydrous: 7487-88-9
+    hydrate: 10034-99-8
+    waters: 7
+
+  - name: calcium chloride
+    anhydrous: 10043-52-4
+    hydrate: 10035-04-8
+    waters: 2
+
+  - name: sodium acetate
+    anhydrous: 127-09-3
+    hydrate: 6131-90-4
+    waters: 3
+
+  - name: iron(II) sulfate
+    anhydrous: 7720-78-7
+    hydrate: 7782-63-0
+    waters: 7
+
+  - name: zinc sulfate
+    anhydrous: 7733-02-0
+    hydrate: 7446-20-0
+    waters: 7
+
+  - name: nickel(II) chloride
+    anhydrous: 7718-54-9
+    hydrate: 7791-20-0
+    waters: 6
+
+  - name: cobalt(II) chloride
+    anhydrous: 7646-79-9
+    hydrate: 7791-13-1
+    waters: 6
+
+  - name: citric acid
+    anhydrous: 77-92-9
+    hydrate: 5949-29-1
+    waters: 1
+
+  - name: oxalic acid
+    anhydrous: 144-62-7
+    hydrate: 6153-56-6
+    waters: 2
+
+# Loba Chemie category slugs to crawl (its sitemap lists categories,
+# not products).
+loba_categories:
+  - Inorganic-Bases
+  - Inorganic-Salts
+  - Inorganic-Acids
+  - HPLC-Buffer-salts
